@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "./supabase";
 
-const HORAS = Array.from({ length: 13 }, (_, i) => i + 8);
+const HORAS = Array.from({ length: 13 }, function(_, i) { return i + 8; });
 
 function getInicioSemana(fecha) {
   const d = new Date(fecha);
@@ -18,7 +18,7 @@ function CitaModal({ cita, onClose }) {
   const est = cita.estilistas || { color: "#888", bg: "#f0f0f0" };
   return (
     <div onClick={onClose} style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.35)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:1000,padding:"1rem" }}>
-      <div onClick={e=>e.stopPropagation()} style={{ background:"#fff",borderRadius:16,padding:"1.5rem",width:"100%",maxWidth:360 }}>
+      <div onClick={function(e){ e.stopPropagation(); }} style={{ background:"#fff",borderRadius:16,padding:"1.5rem",width:"100%",maxWidth:360 }}>
         <div style={{ display:"flex",justifyContent:"space-between",marginBottom:16 }}>
           <div>
             <p style={{ margin:0,fontWeight:600,fontSize:17 }}>{cita.cliente}</p>
@@ -50,11 +50,10 @@ function NuevaCitaModal({ onClose, onGuardar, estilistas }) {
   const [servicio, setServicio] = useState("Corte");
   const [hora, setHora] = useState(10);
   const [fecha, setFecha] = useState(hoy);
-  const [estilistaId, setEstilistaId] = useState("");
-  const [estado, setEstado] = useState("confirmada");
+  const [estilistaId, setEstilistaId] = useState(estilistas[0]?.id || "");
 
   function handleGuardar() {
-    onGuardar({ cliente, telefono, servicio, hora: parseInt(hora), fecha, estilista_id: estilistaId, estado });
+    onGuardar({ cliente, telefono, servicio, hora: parseInt(hora), fecha, estilista_id: estilistaId, estado: "confirmada" });
   }
 
   return (
@@ -77,13 +76,6 @@ function NuevaCitaModal({ onClose, onGuardar, estilistas }) {
             <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Servicio</p>
             <select value={servicio} onChange={function(e){ setServicio(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>
               {["Corte","Tinte","Peinado","Manicure","Facial","Barba"].map(function(s){ return <option key={s}>{s}</option>; })}
-            </select>
-          </div>
-          <div>
-            <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Estilista</p>
-            <select value={estilistaId} onChange={function(e){ setEstilistaId(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>
-              <option value="">Selecciona</option>
-              {estilistas.map(function(e){ return <option key={e.id} value={e.id}>{e.nombre}</option>; })}
             </select>
           </div>
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
@@ -162,11 +154,6 @@ export default function AgendaView() {
       <div style={{ background:"#fff",borderBottom:"1px solid #EBEBEB",padding:"0 1.5rem" }}>
         <div style={{ maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:60 }}>
           <span style={{ fontWeight:700,fontSize:15 }}>Estética Tere</span>
-          <div style={{ display:"flex",gap:6 }}>
-            {estilistas.map(function(e) { return (
-              <button key={e.id} onClick={function(){ setFiltroEstilista(filtroEstilista===e.id?null:e.id); }} style={{ padding:"5px 12px",borderRadius:20,fontSize:12,fontWeight:500,border:"1.5px solid "+(filtroEstilista===e.id?e.color:"#E0E0E0"),background:filtroEstilista===e.id?e.bg:"#fff",color:filtroEstilista===e.id?e.color:"#666",cursor:"pointer" }}>{e.nombre}</button>
-            ); })}
-          </div>
           <button onClick={function(){ setMostrarNueva(true); }} style={{ background:"#1a1a1a",color:"#fff",border:"none",borderRadius:10,padding:"8px 16px",fontSize:13,fontWeight:500,cursor:"pointer" }}>+ Agendar</button>
         </div>
       </div>
@@ -219,7 +206,7 @@ export default function AgendaView() {
                   return (
                     <div key={di} style={{ padding:"4px",borderLeft:"1px solid #F2F2F2",display:"flex",flexDirection:"column",gap:3 }}>
                       {citasSlot.map(function(cita) {
-                        const est = cita.estilistas || { color:"#888", bg:"#f0f0f0" };
+                        const est = cita.estilistas || { color:"#7C6FE0", bg:"#EEEDFE" };
                         return (
                           <button key={cita.id} onClick={function(){ setCitaSeleccionada(cita); }} style={{ background:est.bg,border:"1px solid "+est.color+"30",borderLeft:"3px solid "+est.color,borderRadius:7,padding:"5px 7px",cursor:"pointer",textAlign:"left",width:"100%" }}>
                             <p style={{ margin:0,fontSize:11,fontWeight:600,color:est.color,lineHeight:1.2 }}>{cita.cliente.split(" ")[0]}</p>

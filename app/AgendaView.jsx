@@ -161,7 +161,7 @@ export default function AgendaView() {
     <div style={{ fontFamily:"sans-serif",minHeight:"100vh",background:"#F8F8F6" }}>
       <div style={{ background:"#fff",borderBottom:"1px solid #EBEBEB",padding:"0 1.5rem" }}>
         <div style={{ maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:60 }}>
-          <span style={{ fontWeight:700,fontSize:15 }}>Estetica</span>
+          <span style={{ fontWeight:700,fontSize:15 }}>Estética Tere</span>
           <div style={{ display:"flex",gap:6 }}>
             {estilistas.map(function(e) { return (
               <button key={e.id} onClick={function(){ setFiltroEstilista(filtroEstilista===e.id?null:e.id); }} style={{ padding:"5px 12px",borderRadius:20,fontSize:12,fontWeight:500,border:"1.5px solid "+(filtroEstilista===e.id?e.color:"#E0E0E0"),background:filtroEstilista===e.id?e.bg:"#fff",color:filtroEstilista===e.id?e.color:"#666",cursor:"pointer" }}>{e.nombre}</button>

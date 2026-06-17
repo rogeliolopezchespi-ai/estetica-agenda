@@ -93,7 +93,7 @@ export default function BookPage() {
         <div style={{ width:32,height:32,borderRadius:8,background:"#1a1a1a",display:"flex",alignItems:"center",justifyContent:"center" }}>
           <span style={{ fontSize:16 }}>✂</span>
         </div>
-        <span style={{ fontWeight:700,fontSize:15 }}>Agendar cita</span>
+        <span style={{ fontWeight:700,fontSize:15 }}>Estética Tere</span>
       </div>
 
       <div style={{ maxWidth:480,margin:"0 auto",padding:"1.5rem 1rem" }}>

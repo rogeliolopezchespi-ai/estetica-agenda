@@ -31,11 +31,27 @@ function FormIngreso({ onGuardar, inicial }) {
   const [fecha, setFecha] = useState(inicial?.fecha || new Date().toISOString().split("T")[0]);
   return (
     <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p><input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Corte de cabello" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p><input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_INGRESO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p><input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <button onClick={function(){ onGuardar({ concepto, monto: parseFloat(monto), categoria, fecha }); }} style={{ marginTop:8,width:"100%",background:"#1a1a1a",color:"#fff",border:"none",borderRadius:10,padding:"12px 0",fontSize:14,fontWeight:500,cursor:"pointer" }}>{inicial ? "Actualizar" : "Guardar ingreso"}</button>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p>
+        <input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Corte de cabello" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
+      </div>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p>
+        <input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
+      </div>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p>
+        <select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>
+          {CATEGORIAS_INGRESO.map(function(c){ return <option key={c}>{c}</option>; })}
+        </select>
+      </div>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p>
+        <input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
+      </div>
+      <button onClick={function(){ onGuardar({ concepto, monto: parseFloat(monto), categoria, fecha }); }} style={{ marginTop:8,width:"100%",background:"#1a1a1a",color:"#fff",border:"none",borderRadius:10,padding:"12px 0",fontSize:14,fontWeight:500,cursor:"pointer" }}>
+        {inicial ? "Actualizar" : "Guardar ingreso"}
+      </button>
     </div>
   );
 }
@@ -48,14 +64,36 @@ function FormGasto({ onGuardar, inicial }) {
   const [fecha, setFecha] = useState(inicial?.fecha || new Date().toISOString().split("T")[0]);
   return (
     <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p><input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Renta local" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p><input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-        <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_GASTO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
-        <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Tipo</p><select value={tipo} onChange={function(e){ setTipo(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}><option value="fijo">Fijo</option><option value="variable">Variable</option></select></div>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p>
+        <input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Renta local" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
       </div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p><input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <button onClick={function(){ onGuardar({ concepto, monto: parseFloat(monto), categoria, tipo, fecha }); }} style={{ marginTop:8,width:"100%",background:"#993C1D",color:"#fff",border:"none",borderRadius:10,padding:"12px 0",fontSize:14,fontWeight:500,cursor:"pointer" }}>{inicial ? "Actualizar" : "Guardar gasto"}</button>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p>
+        <input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
+      </div>
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
+        <div>
+          <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p>
+          <select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>
+            {CATEGORIAS_GASTO.map(function(c){ return <option key={c}>{c}</option>; })}
+          </select>
+        </div>
+        <div>
+          <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Tipo</p>
+          <select value={tipo} onChange={function(e){ setTipo(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>
+            <option value="fijo">Fijo</option>
+            <option value="variable">Variable</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p>
+        <input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/>
+      </div>
+      <button onClick={function(){ onGuardar({ concepto, monto: parseFloat(monto), categoria, tipo, fecha }); }} style={{ marginTop:8,width:"100%",background:"#993C1D",color:"#fff",border:"none",borderRadius:10,padding:"12px 0",fontSize:14,fontWeight:500,cursor:"pointer" }}>
+        {inicial ? "Actualizar" : "Guardar gasto"}
+      </button>
     </div>
   );
 }
@@ -84,25 +122,37 @@ export default function FinanzasPage() {
   }
 
   async function guardarIngreso(form) {
-    if (editando) { await supabase.from("ingresos").update(form).eq("id", editando.id); }
-    else { await supabase.from("ingresos").insert([form]); }
-    setModalIngreso(false); setEditando(null); cargar();
+    if (editando) {
+      await supabase.from("ingresos").update(form).eq("id", editando.id);
+    } else {
+      await supabase.from("ingresos").insert([form]);
+    }
+    setModalIngreso(false);
+    setEditando(null);
+    cargar();
   }
 
   async function guardarGasto(form) {
-    if (editando) { await supabase.from("gastos").update(form).eq("id", editando.id); }
-    else { await supabase.from("gastos").insert([form]); }
-    setModalGasto(false); setEditando(null); cargar();
+    if (editando) {
+      await supabase.from("gastos").update(form).eq("id", editando.id);
+    } else {
+      await supabase.from("gastos").insert([form]);
+    }
+    setModalGasto(false);
+    setEditando(null);
+    cargar();
   }
 
   async function eliminarIngreso(id) {
     if (!confirm("Eliminar este ingreso?")) return;
-    await supabase.from("ingresos").delete().eq("id", id); cargar();
+    await supabase.from("ingresos").delete().eq("id", id);
+    cargar();
   }
 
   async function eliminarGasto(id) {
     if (!confirm("Eliminar este gasto?")) return;
-    await supabase.from("gastos").delete().eq("id", id); cargar();
+    await supabase.from("gastos").delete().eq("id", id);
+    cargar();
   }
 
   const totalIngresos = ingresos.reduce(function(s,i){ return s + Number(i.monto); }, 0);
@@ -132,21 +182,77 @@ export default function FinanzasPage() {
           </div>
         </div>
         <div style={{ display:"flex",gap:8,marginBottom:16 }}>
-          <button onClick={function(){ setTab("ingresos"); }} style={{ padding:"8px 20px",borderRadius:20,border:"none",background:tab==="ingresos"?"#1a1a1a":"#E0E0E0",color:tab==="ingresos"?"#fff":"#666",fontSize:13,fontWeight:500,cursor:"pointer" }}>Ingresos ({ingresos.length})</button>
-          <button onClick={function(){ setTab("gastos"); }} style={{ padding:"8px 20px",borderRadius:20,border:"none",background:tab==="gastos"?"#1a1a1a":"#E0E0E0",color:tab==="gastos"?"#fff":"#666",fontSize:13,fontWeight:500,cursor:"pointer" }}>Gastos ({gastos.length})</button>
+          <button onClick={function(){ setTab("ingresos"); }} style={{ padding:"8px 20px",borderRadius:20,border:"none",background:tab==="ingresos"?"#1a1a1a":"#E0E0E0",color:tab==="ingresos"?"#fff":"#666",fontSize:13,fontWeight:500,cursor:"pointer" }}>
+            Ingresos ({ingresos.length})
+          </button>
+          <button onClick={function(){ setTab("gastos"); }} style={{ padding:"8px 20px",borderRadius:20,border:"none",background:tab==="gastos"?"#1a1a1a":"#E0E0E0",color:tab==="gastos"?"#fff":"#666",fontSize:13,fontWeight:500,cursor:"pointer" }}>
+            Gastos ({gastos.length})
+          </button>
           <div style={{ marginLeft:"auto" }}>
-            {tab==="ingresos" && <button onClick={function(){ setEditando(null); setModalIngreso(true); }} style={{ background:"#0F6E56",color:"#fff",border:"none",borderRadius:10,padding:"8px 16px",fontSize:13,fontWeight:500,cursor:"pointer" }}>+ Ingreso</button>}
-            {tab==="gastos" && <button onClick={function(){ setEditando(null); setModalGasto(true); }} style={{ background:"#993C1D",color:"#fff",border:"none",borderRadius:10,padding:"8px 16px",fontSize:13,fontWeight:500,cursor:"pointer" }}>+ Gasto</button>}
+            {tab==="ingresos" && (
+              <button onClick={function(){ setEditando(null); setModalIngreso(true); }} style={{ background:"#0F6E56",color:"#fff",border:"none",borderRadius:10,padding:"8px 16px",fontSize:13,fontWeight:500,cursor:"pointer" }}>
+                + Ingreso
+              </button>
+            )}
+            {tab==="gastos" && (
+              <button onClick={function(){ setEditando(null); setModalGasto(true); }} style={{ background:"#993C1D",color:"#fff",border:"none",borderRadius:10,padding:"8px 16px",fontSize:13,fontWeight:500,cursor:"pointer" }}>
+                + Gasto
+              </button>
+            )}
           </div>
         </div>
         <div style={{ background:"#fff",borderRadius:14,border:"1px solid #EBEBEB",overflow:"hidden" }}>
-          {cargando ? <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Cargando...</div> :
-          tab==="ingresos" ? (
-            ingresos.length===0 ? <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Sin ingresos este mes</div> :
-            ingresos.map(function(ing,i){ return (
-              <div key={ing.id} style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 18px",borderBottom:i<ingresos.length-1?"1px solid #F2F2F2":"none" }}>
-                <div style={{ flex:1 }}>
-                  <p style={{ margin:0,fontSize:14,fontWeight:500 }}>{ing.concepto}</p>
-                  <p style={{ margin:"2px 0 0",fontSize:12,color:"#aaa" }}>{ing.fecha} · {ing.categoria}</p>
+          {cargando ? (
+            <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Cargando...</div>
+          ) : tab==="ingresos" ? (
+            ingresos.length===0 ? (
+              <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Sin ingresos este mes</div>
+            ) : ingresos.map(function(ing,i){
+              return (
+                <div key={ing.id} style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 18px",borderBottom:i<ingresos.length-1?"1px solid #F2F2F2":"none" }}>
+                  <div style={{ flex:1 }}>
+                    <p style={{ margin:0,fontSize:14,fontWeight:500 }}>{ing.concepto}</p>
+                    <p style={{ margin:"2px 0 0",fontSize:12,color:"#aaa" }}>{ing.fecha} · {ing.categoria}</p>
+                  </div>
+                  <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"#0F6E56" }}>{formatMXN(ing.monto)}</p>
+                  <div style={{ display:"flex",gap:6 }}>
+                    <button onClick={function(){ setEditando(ing); setModalIngreso(true); }} style={{ padding:"6px 12px",background:"#F0F0F0",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Editar</button>
+                    <button onClick={function(){ eliminarIngreso(ing.id); }} style={{ padding:"6px 12px",background:"#FAECE7",color:"#993C1D",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Borrar</button>
+                  </div>
                 </div>
-                <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"
+              );
+            })
+          ) : (
+            gastos.length===0 ? (
+              <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Sin gastos este mes</div>
+            ) : gastos.map(function(gas,i){
+              return (
+                <div key={gas.id} style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 18px",borderBottom:i<gastos.length-1?"1px solid #F2F2F2":"none" }}>
+                  <div style={{ flex:1 }}>
+                    <p style={{ margin:0,fontSize:14,fontWeight:500 }}>{gas.concepto}</p>
+                    <p style={{ margin:"2px 0 0",fontSize:12,color:"#aaa" }}>{gas.fecha} · {gas.categoria} · <span style={{ color:gas.tipo==="fijo"?"#185FA5":"#854F0B" }}>{gas.tipo}</span></p>
+                  </div>
+                  <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"#993C1D" }}>{formatMXN(gas.monto)}</p>
+                  <div style={{ display:"flex",gap:6 }}>
+                    <button onClick={function(){ setEditando(gas); setModalGasto(true); }} style={{ padding:"6px 12px",background:"#F0F0F0",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Editar</button>
+                    <button onClick={function(){ eliminarGasto(gas.id); }} style={{ padding:"6px 12px",background:"#FAECE7",color:"#993C1D",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Borrar</button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+      {modalIngreso && (
+        <Modal titulo={editando?"Editar ingreso":"Nuevo ingreso"} onClose={function(){ setModalIngreso(false); setEditando(null); }}>
+          <FormIngreso onGuardar={guardarIngreso} inicial={editando}/>
+        </Modal>
+      )}
+      {modalGasto && (
+        <Modal titulo={editando?"Editar gasto":"Nuevo gasto"} onClose={function(){ setModalGasto(false); setEditando(null); }}>
+          <FormGasto onGuardar={guardarGasto} inicial={editando}/>
+        </Modal>
+      )}
+    </div>
+  );
+}

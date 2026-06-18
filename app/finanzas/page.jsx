@@ -1,4 +1,3 @@
-cat > app/finanzas/page.jsx << '
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
@@ -33,7 +32,7 @@ function FormIngreso({ onGuardar, inicial }) {
     <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p><input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Corte de cabello" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p><input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
-      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoría</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_INGRESO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
+      <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_INGRESO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p><input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
       <button onClick={function(){ onGuardar({ concepto, monto: parseFloat(monto), categoria, fecha }); }} style={{ marginTop:8,width:"100%",background:"#1a1a1a",color:"#fff",border:"none",borderRadius:10,padding:"12px 0",fontSize:14,fontWeight:500,cursor:"pointer" }}>{inicial ? "Actualizar" : "Guardar ingreso"}</button>
     </div>
@@ -51,7 +50,7 @@ function FormGasto({ onGuardar, inicial }) {
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Concepto</p><input value={concepto} onChange={function(e){ setConcepto(e.target.value); }} placeholder="Ej: Renta local" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Monto</p><input type="number" value={monto} onChange={function(e){ setMonto(e.target.value); }} placeholder="0.00" style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-        <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoría</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_GASTO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
+        <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Categoria</p><select value={categoria} onChange={function(e){ setCategoria(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}>{CATEGORIAS_GASTO.map(function(c){ return <option key={c}>{c}</option>; })}</select></div>
         <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Tipo</p><select value={tipo} onChange={function(e){ setTipo(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14 }}><option value="fijo">Fijo</option><option value="variable">Variable</option></select></div>
       </div>
       <div><p style={{ margin:"0 0 4px",fontSize:12,color:"#888" }}>Fecha</p><input type="date" value={fecha} onChange={function(e){ setFecha(e.target.value); }} style={{ width:"100%",padding:"8px 12px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:14,boxSizing:"border-box" }}/></div>
@@ -114,7 +113,7 @@ export default function FinanzasPage() {
       <div style={{ background:"#fff",borderBottom:"1px solid #EBEBEB",padding:"0 1.5rem" }}>
         <div style={{ maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:60 }}>
           <div style={{ display:"flex",alignItems:"center",gap:16 }}>
-            <a href="/" style={{ fontWeight:700,fontSize:15,textDecoration:"none",color:"#1a1a1a" }}>Estética Tere</a>
+            <a href="/" style={{ fontWeight:700,fontSize:15,textDecoration:"none",color:"#1a1a1a" }}>Estetica Tere</a>
             <span style={{ color:"#E0E0E0" }}>|</span>
             <span style={{ fontSize:14,color:"#888" }}>Finanzas</span>
           </div>
@@ -184,4 +183,3 @@ export default function FinanzasPage() {
     </div>
   );
 }
-

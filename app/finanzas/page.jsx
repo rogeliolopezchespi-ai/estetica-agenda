@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
+import Navbar from "../Navbar";
 
 const CATEGORIAS_INGRESO = ["Servicio","Producto","Propina","Otro"];
 const CATEGORIAS_GASTO = ["Renta","Luz","Agua","Gas","Sueldos","Producto","Marketing","Equipo","Otro"];
@@ -110,17 +111,12 @@ export default function FinanzasPage() {
 
   return (
     <div style={{ fontFamily:"sans-serif",minHeight:"100vh",background:"#F8F8F6" }}>
-      <div style={{ background:"#fff",borderBottom:"1px solid #EBEBEB",padding:"0 1.5rem" }}>
-        <div style={{ maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:60 }}>
-          <div style={{ display:"flex",alignItems:"center",gap:16 }}>
-            <a href="/" style={{ fontWeight:700,fontSize:15,textDecoration:"none",color:"#1a1a1a" }}>Estetica Tere</a>
-            <span style={{ color:"#E0E0E0" }}>|</span>
-            <span style={{ fontSize:14,color:"#888" }}>Finanzas</span>
-          </div>
+      <Navbar/>
+      <div style={{ maxWidth:1100,margin:"0 auto",padding:"1.25rem 1.5rem" }}>
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:20 }}>
+          <p style={{ margin:0,fontSize:18,fontWeight:600 }}>Finanzas</p>
           <input type="month" value={mes} onChange={function(e){ setMes(e.target.value); }} style={{ padding:"6px 10px",borderRadius:8,border:"1px solid #E0E0E0",fontSize:13 }}/>
         </div>
-      </div>
-      <div style={{ maxWidth:1100,margin:"0 auto",padding:"1.25rem 1.5rem" }}>
         <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,marginBottom:20 }}>
           <div style={{ background:"#E1F5EE",borderRadius:12,padding:"14px 18px",border:"1px solid #9FE1CB" }}>
             <p style={{ margin:0,fontSize:11,color:"#0F6E56",marginBottom:4 }}>Ingresos del mes</p>
@@ -153,33 +149,4 @@ export default function FinanzasPage() {
                   <p style={{ margin:0,fontSize:14,fontWeight:500 }}>{ing.concepto}</p>
                   <p style={{ margin:"2px 0 0",fontSize:12,color:"#aaa" }}>{ing.fecha} · {ing.categoria}</p>
                 </div>
-                <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"#0F6E56" }}>{formatMXN(ing.monto)}</p>
-                <div style={{ display:"flex",gap:6 }}>
-                  <button onClick={function(){ setEditando(ing); setModalIngreso(true); }} style={{ padding:"6px 12px",background:"#F0F0F0",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Editar</button>
-                  <button onClick={function(){ eliminarIngreso(ing.id); }} style={{ padding:"6px 12px",background:"#FAECE7",color:"#993C1D",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Borrar</button>
-                </div>
-              </div>
-            ); })
-          ) : (
-            gastos.length===0 ? <div style={{ textAlign:"center",padding:"3rem",color:"#aaa" }}>Sin gastos este mes</div> :
-            gastos.map(function(gas,i){ return (
-              <div key={gas.id} style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 18px",borderBottom:i<gastos.length-1?"1px solid #F2F2F2":"none" }}>
-                <div style={{ flex:1 }}>
-                  <p style={{ margin:0,fontSize:14,fontWeight:500 }}>{gas.concepto}</p>
-                  <p style={{ margin:"2px 0 0",fontSize:12,color:"#aaa" }}>{gas.fecha} · {gas.categoria} · <span style={{ color:gas.tipo==="fijo"?"#185FA5":"#854F0B" }}>{gas.tipo}</span></p>
-                </div>
-                <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"#993C1D" }}>{formatMXN(gas.monto)}</p>
-                <div style={{ display:"flex",gap:6 }}>
-                  <button onClick={function(){ setEditando(gas); setModalGasto(true); }} style={{ padding:"6px 12px",background:"#F0F0F0",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Editar</button>
-                  <button onClick={function(){ eliminarGasto(gas.id); }} style={{ padding:"6px 12px",background:"#FAECE7",color:"#993C1D",border:"none",borderRadius:8,fontSize:12,cursor:"pointer" }}>Borrar</button>
-                </div>
-              </div>
-            ); })
-          )}
-        </div>
-      </div>
-      {modalIngreso && <Modal titulo={editando?"Editar ingreso":"Nuevo ingreso"} onClose={function(){ setModalIngreso(false); setEditando(null); }}><FormIngreso onGuardar={guardarIngreso} inicial={editando}/></Modal>}
-      {modalGasto && <Modal titulo={editando?"Editar gasto":"Nuevo gasto"} onClose={function(){ setModalGasto(false); setEditando(null); }}><FormGasto onGuardar={guardarGasto} inicial={editando}/></Modal>}
-    </div>
-  );
-}
+                <p style={{ margin:"0 16px",fontSize:16,fontWeight:600,color:"
